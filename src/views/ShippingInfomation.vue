@@ -128,7 +128,7 @@
                     class="error"
                     v-if="submitted && !$v.selectedWard.required"
                   >
-                    Bạn vui lòng chọn tỉnh/ thành
+                    Bạn vui lòng chọn xã/ phường
                   </div>
                 </el-col>
                 <el-col class="col-md-12">
