@@ -25,7 +25,7 @@
     </el-row>
     <el-row :gutter="20" justify="center" type="flex">
       <el-col  class=" col-12" justify="center">
-        <p class="text-center">VUEJS TRUONG</p>
+        <p class="text-center">Vuejs Trường</p>
       </el-col>
     </el-row>
   </div>
