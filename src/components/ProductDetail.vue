@@ -180,13 +180,6 @@ export default {
       return this.product.listProductDetail[index];
     },
   },
-  // watch: {
-  //   defaultValue: function (old, newVal) {
-  //     if (newVal != old) {
-  //       this.number = old;
-  //     }
-  //   },
-  // },
 };
 </script>
 

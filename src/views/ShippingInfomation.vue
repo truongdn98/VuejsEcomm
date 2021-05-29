@@ -132,7 +132,7 @@
                   </div>
                 </el-col>
                 <el-col class="col-md-12">
-                 <el-checkbox  border="true" v-model="checked">Tôi xác nhận các thông tin trên</el-checkbox>
+                 <el-checkbox  border v-model="checked">Tôi xác nhận các thông tin trên</el-checkbox>
                 </el-col>
               </el-row>
             </div>
@@ -232,8 +232,9 @@ import {
   email,
   numeric,
 } from "vuelidate/lib/validators";
-
-
+// import { mapGetters } from "vuex";
+import { SET_ORDER } from "../store/types";
+//import constants from "../store/constants";
 import myMixin from "../mixins/mixins";
 export default {
   mixins: [myMixin],
@@ -350,10 +351,19 @@ export default {
         rtl: false,
       });
        this.$router.push("/payment-success");
+        const cartLength = this.cart.length;
+        this.cart.splice(0, cartLength);
+      this.updateStore();
+       
     },
-  },
+   
+  updateStore() {
+      this.$store.commit(SET_ORDER, this.cart);
+    },
+   },
 
-  computed: {
+
+  computed: { 
     sumtotalPrice() {
       let sum = 0;
       this.cart.forEach((item) => {

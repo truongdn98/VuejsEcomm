@@ -5,20 +5,13 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import { vuexfireMutations, firestoreAction } from "vuexfire";
 import * as Types from "./types";
-//import { ADD_ORDER} from './types';
 import constants from "./constants";
 import { province } from "./province";
 Vue.use(Vuex);
 Vue.use(firebase);
-//  export const db = firebase
-//    .initializeApp({ projectId: 'vue-shop-7a85f' })
-//    .firestore()
-//const db2 = db.collection('Product')
+
 export const store = new Vuex.Store({
-  //export  default new Vuex.Store({
-  // firestore: {
-  //   product1: db.collection('Product')
-  //   },
+
 
   state: {
     Product: [],
@@ -36,23 +29,23 @@ export const store = new Vuex.Store({
   mutations: {
     ...vuexfireMutations,
 
-    [Types.SET_NOFI](state, payload) {
-      state.nofications.showing = state.nofications.push(payload);
-    },
-    [Types.REMOVE_NOFI](state, payload) {
-      const cartItemIndex = state.nofications.findIndex((x) => x.index === payload.index);
-      state.nofications.splice(cartItemIndex, 1) 
-    },
+    // [Types.SET_NOFI](state, payload) {
+    //   state.nofications.showing = state.nofications.push(payload);
+    // },
+    // [Types.REMOVE_NOFI](state, payload) {
+    //   const cartItemIndex = state.nofications.findIndex((x) => x.index === payload.index);
+    //   state.nofications.splice(cartItemIndex, 1) 
+    // },
     
-    ADD_NUMBER(state, product) {
-      const cartItemIndex = state.Product.findIndex(
-        (item) => item.id === product.id
-      );
+    // ADD_NUMBER(state, product) {
+    //   const cartItemIndex = state.Product.findIndex(
+    //     (item) => item.id === product.id
+    //   );
 
-      if (cartItemIndex > 0) {
-        state.Product[cartItemIndex].cartItemIndex = 2;
-      }
-    },
+    //   if (cartItemIndex > 0) {
+    //     state.Product[cartItemIndex].cartItemIndex = 2;
+    //   }
+    // },
     [Types.ADD_ORDER](state, payload) {
       let cartItemIndex = state.cart.findIndex(
         (x) => x.id === payload.id && x.orderSize === payload.orderSize
@@ -71,23 +64,13 @@ export const store = new Vuex.Store({
       const cart = JSON.stringify(state.cart);
       localStorage.setItem(constants.LOCAL_STORAGE_ORDERS, cart);
     },
-    [Types.REMOVE_PRODUCT_FROM_CART](state, payload) {
-      const cartItemIndex = state.cart.findIndex((x) => x.id === payload.id);
+    // [Types.REMOVE_PRODUCT_FROM_CART](state, payload) {
+    //   const cartItemIndex = state.cart.findIndex((x) => x.id === payload.id);
 
-      state.cart.splice(cartItemIndex, 1);
-    },
+    //   state.cart.splice(cartItemIndex, 1);
+    // },
     [Types.CHECK_PROMO](state, payload) {
       state.promoCheck = payload;
-    },
-
-    [Types.INCREMENT_CART_ITEM_QUANTITY](state, payload) {
-      const cartItemIndex = state.cart.findIndex((x) => x.id === payload.id);
-      state.cart[cartItemIndex].orderNumber = 3;
-      //state.cart[cartItemIndex].splice(cartItemIndex, 1);
-    },
-    [Types.DECREMENT_CART_ITEM_QUANTITY](state, cartId) {
-      const cartItemIndex = state.cart.findIndex((item) => item.id === cartId);
-      state.cart[cartItemIndex].orderNumber--;
     },
   },
   actions: {
@@ -109,9 +92,6 @@ export const store = new Vuex.Store({
       });
       return count;
     },
-    // productSelected(index){
-    //   store.state.selectedProduct = index
-
-    // }
+  
   },
 });
